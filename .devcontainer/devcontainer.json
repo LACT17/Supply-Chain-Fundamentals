@@ -1,0 +1,27 @@
+{
+  "name": "Supply Chain Fundamentales",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspaces/js-algorithms",
+  "remoteUser": "node",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "usernamehw.errorlens",
+        "aaron-bond.better-comments",
+        "ms-vscode.js-debug"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        }
+      }
+    }
+  },
+  "forwardPorts": [3000]
+}
