@@ -1,14 +1,3 @@
-/* 
-*       The problem with this code is that it doesn't round . 
-        For example lets say i have 91.67 it wont round up to 92, 
-        it will round down to 91.
-*
-* D1 : Most Recent demand
-* D2 : 2nd Recent demand
-* D3 : 3nd Recent demand
-*
-*/
-
 /**
  * ============================================================================
  * FORECASTING MODEL: WEIGHTED MOVING AVERAGE (WMA)
