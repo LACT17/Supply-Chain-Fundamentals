@@ -52,3 +52,9 @@ const moving = simple_moving_average_forecast(
   3,
 );
 console.log(moving);
+
+const moving2 = simple_moving_average_forecast(
+  [90, 89, 87, 92, 94, 101, 99, 100, 105, 108, 110, 105],
+  4,
+);
+console.log(moving2);
