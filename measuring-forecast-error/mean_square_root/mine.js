@@ -6,7 +6,7 @@
 *
 */
 
-function cumulative_sum_of_error(forecastDataSet, demandDataSet) {
+function mean_square_root(forecastDataSet, demandDataSet) {
   if (forecastDataSet.length !== demandDataSet.length) {
     throw new Error("Datasets must be of the same length.");
   }
@@ -14,28 +14,39 @@ function cumulative_sum_of_error(forecastDataSet, demandDataSet) {
   let cumulative = [];
   let tempTotalForecast = 0;
   let tempDemandDataSet = 0;
-  for (let i = 0; i < forecastDataSet.length; i++) {
+  let tempTotalMeanSquareRoot = 0;
+  const monthsTotal = Number(forecastDataSet.length);
+  for (let i = 0; i < monthsTotal; i++) {
     tempTotalForecast += forecastDataSet[i];
     tempDemandDataSet += demandDataSet[i];
-
+    let cumSumErrTotal = demandDataSet[i] - forecastDataSet[i];
+    let meSqRo = cumSumErrTotal ** 2;
+    tempTotalMeanSquareRoot += meSqRo;
     cumulative.push({
       month: i + 1,
       forecast: forecastDataSet[i],
       demand: demandDataSet[i],
-      cumulative_sum_error: demandDataSet[i] - forecastDataSet[i],
+      cumulative_sum_error: cumSumErrTotal,
+      mean_square_root_total: meSqRo,
     });
   }
 
+  let cseTotal = tempDemandDataSet - tempTotalForecast;
+  let msrTotal = tempTotalMeanSquareRoot / monthsTotal;
+  let sr = Math.sqrt(msrTotal);
+  let srRound = Math.round(sr);
   cumulative.push({
     month: "Total",
     forecast: tempTotalForecast,
     demand: tempDemandDataSet,
-    cumulative_sum_error: tempDemandDataSet - tempTotalForecast,
+    cumulative_sum_error: cseTotal,
+    mean_square_root_total: tempTotalMeanSquareRoot,
+    square_root: srRound,
   });
   return cumulative;
 }
 
-const cumulative = cumulative_sum_of_error(
+const cumulative = mean_square_root(
   [1120, 999, 1005, 850, 950, 1236, 995, 1125, 1050, 995, 1030, 875],
   [1400, 960, 1440, 1175, 815, 775, 880, 930, 1550, 665, 1305, 550],
 );
